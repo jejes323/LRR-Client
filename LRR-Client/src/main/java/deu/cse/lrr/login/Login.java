@@ -26,6 +26,11 @@ public class Login extends javax.swing.JFrame {
         roleGroup.add(jRadioButton1); // 학생
         roleGroup.add(jRadioButton2); // 교수
         roleGroup.add(jRadioButton3); // 조교
+
+        // 회원가입 버튼 이벤트 연결
+        jButton2.addActionListener(e -> {
+            new Register().setVisible(true);
+        });
     }
 
     /**
