@@ -250,10 +250,12 @@ public class Login extends javax.swing.JFrame {
             return;
         }
 
-        // 서버와 소켓 통신하여 로그인 상태 전송
-        try (java.net.Socket socket = new java.net.Socket("127.0.0.1", 9999);
-             java.io.BufferedWriter out = new java.io.BufferedWriter(new java.io.OutputStreamWriter(socket.getOutputStream()));
-             java.io.BufferedReader in = new java.io.BufferedReader(new java.io.InputStreamReader(socket.getInputStream()))) {
+        // 서버와 소켓 통신하여 로그인 상태 전송 (연결 유지)
+        java.net.Socket socket = null;
+        try {
+            socket = new java.net.Socket("127.0.0.1", 9999);
+            java.io.BufferedWriter out = new java.io.BufferedWriter(new java.io.OutputStreamWriter(socket.getOutputStream()));
+            java.io.BufferedReader in = new java.io.BufferedReader(new java.io.InputStreamReader(socket.getInputStream()));
             
             // 로그인 요청 전송
             out.write("LOGIN:" + id + "," + password + "," + role + "\n");
@@ -264,13 +266,25 @@ public class Login extends javax.swing.JFrame {
             
             if ("LOGIN_SUCCESS".equals(response)) {
                 javax.swing.JOptionPane.showMessageDialog(this, id + "님 (" + role + ") 로그인 성공!");
-                // 여기서 메인 화면으로 이동하거나 추가 로직 처리
+                // 로그인 성공 시 연결을 유지합니다. 
+                // TODO: 이후 메인 화면(다음 창)을 띄울 때 socket, in, out 객체를 전달하여 통신을 계속 이어가세요.
+            } else if ("ALREADY_LOGGED_IN".equals(response)) {
+                javax.swing.JOptionPane.showMessageDialog(this, "이미 접속 중인 아이디입니다.", "로그인 실패", javax.swing.JOptionPane.ERROR_MESSAGE);
+                socket.close();
             } else {
                 javax.swing.JOptionPane.showMessageDialog(this, "아이디 또는 비밀번호가 일치하지 않습니다.", "로그인 실패", javax.swing.JOptionPane.ERROR_MESSAGE);
+                socket.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, "서버 연결 실패: " + e.getMessage());
+            if (socket != null && !socket.isClosed()) {
+                try {
+                    socket.close();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
 
