@@ -69,11 +69,11 @@ public class Register extends javax.swing.JFrame {
                 // 로그인 창 닫힘 없이 그대로 둬도 되거나, 회원가입 창만 닫기
                 this.dispose();
             } else if ("ALREADY_EXISTS_ID".equals(response)) {
-                javax.swing.JOptionPane.showMessageDialog(this, "이미 사용 중인 아이디입니다.", "가입 불가", javax.swing.JOptionPane.ERROR_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "해당 아이디는 이미 사용되고 있습니다.", "가입 불가", javax.swing.JOptionPane.ERROR_MESSAGE);
             } else if ("ALREADY_EXISTS_NUMBER".equals(response)) {
-                javax.swing.JOptionPane.showMessageDialog(this, "이미 가입된 학번/교수번호입니다.", "가입 불가", javax.swing.JOptionPane.ERROR_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "이미 등록된 학번 또는 교수번호입니다.", "가입 불가", javax.swing.JOptionPane.ERROR_MESSAGE);
             } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "회원가입에 실패했습니다. 다시 시도해주세요.", "오류", javax.swing.JOptionPane.ERROR_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "회원가입 처리 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.", "오류", javax.swing.JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (Exception e) {
@@ -176,7 +176,7 @@ public class Register extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
