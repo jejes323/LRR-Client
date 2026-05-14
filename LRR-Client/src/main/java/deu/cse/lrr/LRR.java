@@ -4,7 +4,9 @@
 
 package deu.cse.lrr;
 
-import deu.cse.lrr.login.Login;
+import deu.cse.lrr.login.LoginController;
+import deu.cse.lrr.login.LoginModel;
+import deu.cse.lrr.login.LoginView;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,6 +32,11 @@ public class LRR {
         }
 
         // Login JFrame 실행
-        java.awt.EventQueue.invokeLater(() -> new Login().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+            LoginView view = new LoginView();
+            LoginModel model = new LoginModel();
+            new LoginController(view, model);
+            view.setVisible(true);
+        });
     }
 }

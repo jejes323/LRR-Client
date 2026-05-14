@@ -8,29 +8,50 @@ package deu.cse.lrr.login;
  *
  * @author seo
  */
-public class Login extends javax.swing.JFrame {
+public class LoginView extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoginView.class.getName());
 
     /**
-     * Creates new form Login
+     * Creates new form LoginView
      */
-    public Login() {
+    public LoginView() {
         initComponents();
-        // 로그인 버튼 이벤트 연결 (GEN 코드 외부에서 처리)
-        jButton1.addActionListener(this::handleLogin);
         // 플레이스홀더 설정
         setupPlaceholders();
         // 라디오버튼 그룹 설정 (하나만 선택 가능)
         javax.swing.ButtonGroup roleGroup = new javax.swing.ButtonGroup();
-        roleGroup.add(jRadioButton1); // 학생
-        roleGroup.add(jRadioButton2); // 교수
-        roleGroup.add(jRadioButton3); // 조교
+        roleGroup.add(rbStudent); // 학생
+        roleGroup.add(rbProfessor); // 교수
+        roleGroup.add(rbAssistant); // 조교
+    }
 
-        // 회원가입 버튼 이벤트 연결
-        jButton2.addActionListener(e -> {
-            new Register().setVisible(true);
-        });
+    public void addLoginListener(java.awt.event.ActionListener listener) {
+        btnLogin.addActionListener(listener);
+    }
+
+    public void addRegisterListener(java.awt.event.ActionListener listener) {
+        btnRegister.addActionListener(listener);
+    }
+
+    public String getId() {
+        return idField.getText().equals("ID") ? "" : idField.getText().trim();
+    }
+
+    public String getPassword() {
+        String rawPassword = String.valueOf(pwField.getPassword());
+        return rawPassword.equals("Password") ? "" : rawPassword.trim();
+    }
+
+    public String getSelectedRole() {
+        if (rbStudent.isSelected()) return "STUDENT";
+        if (rbProfessor.isSelected()) return "PROFESSOR";
+        if (rbAssistant.isSelected()) return "ASSISTANT";
+        return "";
+    }
+
+    public void showMessage(String message, String title, int messageType) {
+        javax.swing.JOptionPane.showMessageDialog(this, message, title, messageType);
     }
 
     /**
@@ -44,14 +65,14 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        userId = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        idField = new javax.swing.JTextField();
+        rbStudent = new javax.swing.JRadioButton();
+        rbProfessor = new javax.swing.JRadioButton();
+        rbAssistant = new javax.swing.JRadioButton();
+        btnLogin = new javax.swing.JButton();
+        btnRegister = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        pwField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,21 +81,21 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        jLabel2.setText("USER Login");
+        jLabel2.setText("User LoginView");
 
-        userId.setToolTipText("ID");
-        userId.addActionListener(this::userIdActionPerformed);
+        idField.setToolTipText("ID");
+        idField.addActionListener(this::idFieldActionPerformed);
 
-        jRadioButton1.setText("학생");
-        jRadioButton1.addActionListener(this::jRadioButton1ActionPerformed);
+        rbStudent.setText("학생");
+        rbStudent.addActionListener(this::rbStudentActionPerformed);
 
-        jRadioButton2.setText("교수");
+        rbProfessor.setText("교수");
 
-        jRadioButton3.setText("조교");
+        rbAssistant.setText("조교");
 
-        jButton1.setText("로그인");
+        btnLogin.setText("로그인");
 
-        jButton2.setText("회원가입");
+        btnRegister.setText("회원가입");
 
         jLabel3.setText("아이디가 없으신가요?");
 
@@ -85,30 +106,30 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(userId)
+                            .addComponent(idField)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton3)
+                                .addComponent(rbAssistant)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton2)
-                                    .addComponent(jRadioButton1))
+                                    .addComponent(rbProfessor)
+                                    .addComponent(rbStudent))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jPasswordField1))))
-                .addGap(65, 65, 65))
+                                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(pwField)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jLabel2)))
+                .addGap(73, 73, 73))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jRadioButton1, jRadioButton2, jRadioButton3});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rbAssistant, rbProfessor, rbStudent});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,44 +139,44 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(12, 12, 12)
-                .addComponent(userId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pwField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(rbStudent)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(rbProfessor)
+                    .addComponent(btnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton3)
+                    .addComponent(rbAssistant)
                     .addComponent(jLabel3))
                 .addGap(26, 26, 26))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jRadioButton1, jRadioButton2, jRadioButton3});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {rbAssistant, rbProfessor, rbStudent});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdActionPerformed
+    private void idFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userIdActionPerformed
+    }//GEN-LAST:event_idFieldActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void rbStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbStudentActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_rbStudentActionPerformed
 
     /**
-     * userId, jPasswordField1 필드에 플레이스홀더(힌트 텍스트)를 설정합니다.
+     * idField, pwField 필드에 플레이스홀더(힌트 텍스트)를 설정합니다.
      * FocusListener를 사용해 포커스 유무에 따라 힌트를 표시/숨깁니다.
      */
     private void setupPlaceholders() {
-        addPlaceholder(userId, "ID");
-        addPasswordPlaceholder(jPasswordField1, "Password");
+        addPlaceholder(idField, "ID");
+        addPasswordPlaceholder(pwField, "Password");
     }
 
     /**
@@ -229,64 +250,7 @@ public class Login extends javax.swing.JFrame {
         });
     }
 
-    private void handleLogin(java.awt.event.ActionEvent evt) {
-        // 플레이스홀더 상태이면 빈 문자열로 처리
-        String id = userId.getText().equals("ID") ? "" : userId.getText().trim();
-        // JPasswordField는 getPassword()로 읽고 즉시 보안 처리
-        String rawPassword = String.valueOf(jPasswordField1.getPassword());
-        String password = rawPassword.equals("Password") ? "" : rawPassword.trim();
 
-        // 역할 선택 여부 확인
-        String role = "";
-        if (jRadioButton1.isSelected()) {
-            role = "STUDENT";
-        } else if (jRadioButton2.isSelected()) {
-            role = "PROFESSOR";
-        } else if (jRadioButton3.isSelected()) {
-            role = "ASSISTANT";
-        } else {
-            // 역할 미선택 시 JOptionPane으로 에러 메시지 표시
-            javax.swing.JOptionPane.showMessageDialog(this, "역할을 선택하지 않았습니다.", "오류", javax.swing.JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // 서버와 소켓 통신하여 로그인 상태 전송 (연결 유지)
-        java.net.Socket socket = null;
-        try {
-            socket = new java.net.Socket("127.0.0.1", 9999);
-            java.io.BufferedWriter out = new java.io.BufferedWriter(new java.io.OutputStreamWriter(socket.getOutputStream()));
-            java.io.BufferedReader in = new java.io.BufferedReader(new java.io.InputStreamReader(socket.getInputStream()));
-            
-            // 로그인 요청 전송
-            out.write("LOGIN:" + id + "," + password + "," + role + "\n");
-            out.flush();
-            
-            // 서버 응답 대기
-            String response = in.readLine();
-            
-            if ("LOGIN_SUCCESS".equals(response)) {
-                javax.swing.JOptionPane.showMessageDialog(this, id + "님 (" + role + ") 로그인 성공!");
-                // 로그인 성공 시 연결을 유지합니다. 
-                // TODO: 이후 메인 화면(다음 창)을 띄울 때 socket, in, out 객체를 전달하여 통신을 계속 이어가세요.
-            } else if ("ALREADY_LOGGED_IN".equals(response)) {
-                javax.swing.JOptionPane.showMessageDialog(this, "이미 접속 중인 아이디입니다.", "로그인 실패", javax.swing.JOptionPane.ERROR_MESSAGE);
-                socket.close();
-            } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "아이디 또는 비밀번호가 일치하지 않습니다.", "로그인 실패", javax.swing.JOptionPane.ERROR_MESSAGE);
-                socket.close();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(this, "서버 연결 실패: " + e.getMessage());
-            if (socket != null && !socket.isClosed()) {
-                try {
-                    socket.close();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        }
-    }
 
     /**
      * @param args the command line arguments
@@ -310,19 +274,24 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Login().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+            LoginView view = new LoginView();
+            LoginModel model = new LoginModel();
+            new LoginController(view, model);
+            view.setVisible(true);
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnRegister;
+    private javax.swing.JTextField idField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JTextField userId;
+    private javax.swing.JPasswordField pwField;
+    private javax.swing.JRadioButton rbAssistant;
+    private javax.swing.JRadioButton rbProfessor;
+    private javax.swing.JRadioButton rbStudent;
     // End of variables declaration//GEN-END:variables
 }
