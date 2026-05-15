@@ -1,9 +1,8 @@
-deu/cse/lrr/login/LoginView.class
-deu/cse/lrr/login/LoginController$LoginListener.class
-deu/cse/lrr/LRR.class
 deu/cse/lrr/login/LoginController.class
 deu/cse/lrr/login/LoginView$2.class
 deu/cse/lrr/login/Register.class
 deu/cse/lrr/login/LoginController$RegisterListener.class
-deu/cse/lrr/login/LoginView$1.class
 deu/cse/lrr/login/LoginModel.class
+deu/cse/lrr/login/LoginView.class
+deu/cse/lrr/login/LoginController$LoginListener.class
+deu/cse/lrr/login/LoginView$1.class

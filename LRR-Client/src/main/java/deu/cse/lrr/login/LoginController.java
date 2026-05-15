@@ -35,10 +35,18 @@ public class LoginController {
                 return;
             }
 
-            if ("LOGIN_SUCCESS".equals(response)) {
-                view.showMessage(id + "님 (" + role + ") 로그인 성공!", "성공", JOptionPane.INFORMATION_MESSAGE);
-                // 로그인 성공 시 연결 유지, 다음 창 호출 등의 로직 추가
-                // TODO: 이후 메인 화면(다음 창)을 띄울 때 model.getSocket() 등을 전달하세요.
+            if (response.startsWith("LOGIN_SUCCESS")) {
+                String[] resParts = response.split(",");
+                String name = (resParts.length > 1) ? resParts[1] : id;
+
+                view.showMessage(name + "님 (" + role + ") 로그인 성공!", "성공", JOptionPane.INFORMATION_MESSAGE);
+                view.dispose(); // 로그인 창 닫기
+
+                if ("STUDENT".equals(role) || "PROFESSOR".equals(role) || "ASSISTANT".equals(role)) {
+                    deu.cse.lrr.dashboard.UserDashboardView dashView = new deu.cse.lrr.dashboard.UserDashboardView();
+                    new deu.cse.lrr.dashboard.UserDashboardController(dashView, name, role);
+                    dashView.setVisible(true);
+                }
             } else if ("ALREADY_LOGGED_IN".equals(response)) {
                 view.showMessage("이미 접속 중인 아이디입니다.", "로그인 실패", JOptionPane.ERROR_MESSAGE);
                 closeSocket();

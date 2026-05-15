@@ -14,9 +14,9 @@ import java.util.logging.Logger;
  *
  * @author seo
  */
-public class LRR {
+public class Main {
 
-    private static final Logger logger = Logger.getLogger(LRR.class.getName());
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
         // Nimbus Look and Feel 설정
