@@ -62,10 +62,10 @@
                               <Component id="roomStatusScrollPane" alignment="0" min="-2" pref="639" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="btnReserve" min="-2" pref="119" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="btnReserve" max="32767" attributes="0"/>
                               <Component id="btnLogout" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnMyReservation" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnReservationList" alignment="1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -88,7 +88,7 @@
                       <Group type="102" attributes="0">
                           <Component id="btnReserve" min="-2" pref="45" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnMyReservation" min="-2" pref="45" max="-2" attributes="0"/>
+                          <Component id="btnReservationList" min="-2" pref="45" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnLogout" min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
@@ -163,7 +163,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReserveActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnMyReservation">
+        <Component class="javax.swing.JButton" name="btnReservationList">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#xb0b4; &#xc608;&#xc57d; &#xc870;&#xd68c;/&#xcde8;&#xc18c;"/>
           </Properties>

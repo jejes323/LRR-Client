@@ -44,7 +44,7 @@ public class LoginController {
 
                 if ("STUDENT".equals(role) || "PROFESSOR".equals(role) || "ASSISTANT".equals(role)) {
                     deu.cse.lrr.dashboard.UserDashboardView dashView = new deu.cse.lrr.dashboard.UserDashboardView();
-                    new deu.cse.lrr.dashboard.UserDashboardController(dashView, name, role);
+                    new deu.cse.lrr.dashboard.UserDashboardController(dashView, name, role, id, model.getSocket());
                     dashView.setVisible(true);
                 }
             } else if ("ALREADY_LOGGED_IN".equals(response)) {

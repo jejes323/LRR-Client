@@ -33,7 +33,7 @@ public class UserDashboardView extends javax.swing.JFrame {
         welcomeLabel = new javax.swing.JLabel();
         roomStatusScrollPane = new javax.swing.JScrollPane();
         btnReserve = new javax.swing.JButton();
-        btnMyReservation = new javax.swing.JButton();
+        btnReservationList = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         dateLabel = new javax.swing.JLabel();
         viewModeCombo = new javax.swing.JComboBox<>();
@@ -46,7 +46,7 @@ public class UserDashboardView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         welcomeLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        welcomeLabel.setText("환영합니다.");
+        welcomeLabel.setText("학생님 환영합니다.");
 
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
@@ -67,7 +67,7 @@ public class UserDashboardView extends javax.swing.JFrame {
         btnReserve.setText("예약 신청");
         btnReserve.addActionListener(this::btnReserveActionPerformed);
 
-        btnMyReservation.setText("내 예약 조회/취소");
+        btnReservationList.setText("내 예약 조회/취소");
 
         btnLogout.setText("로그아웃");
 
@@ -116,10 +116,10 @@ public class UserDashboardView extends javax.swing.JFrame {
                                 .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(roomStatusScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(56, 56, 56)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnReserve, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnReserve, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnLogout)
-                            .addComponent(btnMyReservation)))
+                            .addComponent(btnReservationList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(248, 248, 248)
                         .addComponent(dateLabel)))
@@ -136,7 +136,7 @@ public class UserDashboardView extends javax.swing.JFrame {
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(btnReserve, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnMyReservation, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnReservationList, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(roomStatusScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -194,14 +194,15 @@ public class UserDashboardView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             UserDashboardView view = new UserDashboardView();
-            new UserDashboardController(view, "관리자", "ASSISTANT"); // 테스트용
+            // 테스트용 데이터: 이름, 역할, ID, 소켓(null)
+            new UserDashboardController(view, "테스트용", "STUDENT", "test_id", null);
             view.setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogout;
-    private javax.swing.JButton btnMyReservation;
+    private javax.swing.JButton btnReservationList;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPrev;
     private javax.swing.JButton btnReserve;

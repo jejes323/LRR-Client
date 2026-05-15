@@ -24,10 +24,14 @@ import javax.swing.table.DefaultTableModel;
 public class UserDashboardController {
     
     private final UserDashboardView view;
+    private final String userId;
+    private final java.net.Socket socket;
     private LocalDate currentDate;
     
-    public UserDashboardController(UserDashboardView view, String userName, String role) {
+    public UserDashboardController(UserDashboardView view, String userName, String role, String userId, java.net.Socket socket) {
         this.view = view;
+        this.userId = userId;
+        this.socket = socket;
         this.currentDate = LocalDate.now();
         
         initUIComponents();
@@ -86,9 +90,13 @@ public class UserDashboardController {
             btnReserve.addActionListener(e -> JOptionPane.showMessageDialog(view, "강의실 예약 모달 창이 열립니다."));
         }
         
-        JButton btnMyReservation = getButton("btnMyReservation");
-        if (btnMyReservation != null) {
-            btnMyReservation.addActionListener(e -> JOptionPane.showMessageDialog(view, "내 예약 조회/취소 모달 창이 열립니다."));
+        JButton btnReservationList = getButton("btnReservationList");
+        if (btnReservationList != null) {
+            btnReservationList.addActionListener(e -> {
+                deu.cse.lrr.reservation.ReservationListView myResView = new deu.cse.lrr.reservation.ReservationListView();
+                new deu.cse.lrr.reservation.ReservationListController(myResView, userId, socket);
+                myResView.setVisible(true);
+            });
         }
         
         JButton btnLogout = getButton("btnLogout");

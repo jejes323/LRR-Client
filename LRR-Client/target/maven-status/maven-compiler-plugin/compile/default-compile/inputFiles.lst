@@ -1,9 +1,10 @@
 /Users/seo/Documents/GitHub/LRR-Client/LRR-Client/src/main/java/deu/cse/lrr/Main.java
-/Users/seo/Documents/GitHub/LRR-Client/LRR-Client/src/main/java/deu/cse/lrr/dashboard/AssistantDashboardView.java
-/Users/seo/Documents/GitHub/LRR-Client/LRR-Client/src/main/java/deu/cse/lrr/dashboard/ProfessorDashboardView.java
-/Users/seo/Documents/GitHub/LRR-Client/LRR-Client/src/main/java/deu/cse/lrr/dashboard/StudentDashboardController.java
-/Users/seo/Documents/GitHub/LRR-Client/LRR-Client/src/main/java/deu/cse/lrr/dashboard/StudentDashboardView.java
+/Users/seo/Documents/GitHub/LRR-Client/LRR-Client/src/main/java/deu/cse/lrr/dashboard/UserDashboardController.java
+/Users/seo/Documents/GitHub/LRR-Client/LRR-Client/src/main/java/deu/cse/lrr/dashboard/UserDashboardView.java
 /Users/seo/Documents/GitHub/LRR-Client/LRR-Client/src/main/java/deu/cse/lrr/login/LoginController.java
 /Users/seo/Documents/GitHub/LRR-Client/LRR-Client/src/main/java/deu/cse/lrr/login/LoginModel.java
 /Users/seo/Documents/GitHub/LRR-Client/LRR-Client/src/main/java/deu/cse/lrr/login/LoginView.java
 /Users/seo/Documents/GitHub/LRR-Client/LRR-Client/src/main/java/deu/cse/lrr/login/Register.java
+/Users/seo/Documents/GitHub/LRR-Client/LRR-Client/src/main/java/deu/cse/lrr/reservation/MyReservationController.java
+/Users/seo/Documents/GitHub/LRR-Client/LRR-Client/src/main/java/deu/cse/lrr/reservation/MyReservationView.java
+/Users/seo/Documents/GitHub/LRR-Client/LRR-Client/src/main/java/deu/cse/lrr/reservation/ReservationView.java
